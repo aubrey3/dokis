@@ -242,7 +242,9 @@ async def on_message(message):
 
     if message.content.upper().startswith('S_HUG'):
         Author = message.author.id
-        if ('@everyone' or '@here') in message.content.lower():
+        if '@everyone' in message.content.lower():
+            pass
+        elif '@here' in message.content.lower():
             pass
         elif Author in hug_cooldown:
             await channel.send("Give me a few seconds; I'm still getting over how nice that last hug was!")
@@ -568,7 +570,12 @@ async def on_message(message):
 
 ########################################
 
-    if ('@everyone' or '@here') in message.content.lower() and message.content.upper().startswith("S_"):
+    if '@everyone' in message.content.lower() and message.content.upper().startswith("S_"):
+        await message.delete()
+        await channel.send("We don't need to get everyone's attention!")
+        return
+    
+    if '@here' in message.content.lower() and message.content.upper().startswith("S_"):
         await message.delete()
         await channel.send("We don't need to get everyone's attention!")
         return
