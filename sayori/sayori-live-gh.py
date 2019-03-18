@@ -8,6 +8,8 @@ import emoji
 import pickle
 
 client = commands.AutoShardedBot(command_prefix="s_")
+self_id = ""
+self_id_tag = ""
 
 e = discord.Embed()
 
@@ -101,7 +103,9 @@ async def on_ready():
     print("Logged in as:")
     print(client.user.name)
     print("ID:")
-    print(client.user.id)
+    self_id = client.user.id
+    print(self_id)
+    self_id_tag = "<@%s>" % self_id
     print("Agent Sayori, prepared for duty!")
 
 @client.event
@@ -135,9 +139,9 @@ async def on_message(message):
             if chat_serverID in s_hang_false_ids:
                 pass
             else:
-                if message.author.id == 425696108455657472:
+                if message.author.id == self_id:
                     pass
-                elif message.content.upper().startswith('<@425696108455657472>'):
+                elif message.content.upper().startswith(self_id_tag):
                     pass
                 elif 'myself' in message.content.lower():
                     await asyncio.sleep(1)
@@ -165,9 +169,9 @@ async def on_message(message):
             chat_serverID = message.guild.id
             if chat_serverID in s_hang_false_ids:
                 pass
-            elif message.author.id == 425696108455657472 or '<@433834936450023424>' in message.content.lower() or message.author.id == 433834936450023424 or message.author.id == 436350586670153730 or message.author.id == 436351740787294208 or '<@436351740787294208>' in message.content.lower():
+            elif message.author.id == self_id or '<@433834936450023424>' in message.content.lower() or message.author.id == 433834936450023424 or message.author.id == 436350586670153730 or message.author.id == 436351740787294208 or '<@436351740787294208>' in message.content.lower():
                 pass
-            elif message.content.upper().startswith('<@425696108455657472>') or message.content.upper().startswith('<@436350586670153730>') or message.content.upper().startswith('<@436351740787294208>'):
+            elif message.content.upper().startswith(self_id_tag) or message.content.upper().startswith('<@436350586670153730>') or message.content.upper().startswith('<@436351740787294208>'):
                 pass
             else:
                 await asyncio.sleep(1)
@@ -179,9 +183,9 @@ async def on_message(message):
             chat_serverID = message.guild.id
             if chat_serverID in s_hang_false_ids:
                 pass
-            elif message.author.id == 425696108455657472 or '<@433834936450023424>' in message.content.lower() or message.author.id == 433834936450023424 or message.author.id == 436350586670153730:
+            elif message.author.id == self_id or '<@433834936450023424>' in message.content.lower() or message.author.id == 433834936450023424 or message.author.id == 436350586670153730:
                 pass
-            elif message.content.upper().startswith('<@425696108455657472>') or message.content.upper().startswith('<@436350586670153730>'):
+            elif message.content.upper().startswith(self_id_tag) or message.content.upper().startswith('<@436350586670153730>'):
                 pass
             elif 'myself' in message.content.lower():
                 await asyncio.sleep(1)
@@ -248,7 +252,7 @@ async def on_message(message):
                 return
             else:
                 member = message.content.split(" ")[1]
-                if member == "Sayori" or member == "yourself" or '<@425696108455657472>' in message.content.lower():
+                if member == "Sayori" or member == "yourself" or self_id_tag in message.content.lower():
                     hug_cooldown.insert(0, Author)
                     await asyncio.sleep(1)
                     await channel.trigger_typing()
@@ -285,7 +289,7 @@ async def on_message(message):
 
 # @Sayori Responses
 
-    if message.content.upper().startswith('<@425696108455657472>'):
+    if message.content.upper().startswith(self_id_tag):
         userID = message.author.id
         if len(message.content.split(" ")) == 1:
             if message.author.id == 433834936450023424 or message.author.id == 436350586670153730:
@@ -317,7 +321,7 @@ async def on_message(message):
                 await channel.send(random.choice(love_reactions))
                 return
             elif 'goodnight' in message.content.lower() or 'good night' in message.content.lower():
-                if message.author.id == 425696108455657472:
+                if message.author.id == self_id:
                     pass
                 else:
                     await asyncio.sleep(1)
@@ -326,7 +330,7 @@ async def on_message(message):
                     await channel.send(random.choice(goodnight_reactions))
                     return
             elif 'good morning' in message.content.lower():
-                if message.author.id == 425696108455657472:
+                if message.author.id == self_id:
                     pass
                 else:
                     await asyncio.sleep(1)
@@ -335,7 +339,7 @@ async def on_message(message):
                     await channel.send(random.choice(goodmorning_reactions))
                     return
             elif 'good afternoon' in message.content.lower():
-                if message.author.id == 425696108455657472:
+                if message.author.id == self_id:
                     pass
                 else:
                     await asyncio.sleep(1)
@@ -352,7 +356,7 @@ async def on_message(message):
             elif 'is a meanie' in message.content.lower() or 'being a meanie' in message.content.lower() or 'are a meanie' in message.content.lower() or 'are being a meanie' in message.content.lower():
                 if 'nigger' in message.content.lower():
                     pass
-                elif member == 'Sayori' or member == "sayori" or member == "you" or member == "you're" or member == 'is' or member == '<@425696108455657472>':
+                elif member == 'Sayori' or member == "sayori" or member == "you" or member == "you're" or member == 'is' or member == self_id_tag:
                     await asyncio.sleep(1)
                     await channel.trigger_typing()
                     await asyncio.sleep(1)
@@ -464,7 +468,7 @@ async def on_message(message):
 
 # Other Bot Interactions
 
-    if '<@425696108455657472>' in message.content.lower():
+    if self_id_tag in message.content.lower():
         if message.author.id == 433834936450023424: #Natsuki
             if 'hugs' in message.content.lower():
                 await asyncio.sleep(1)
@@ -578,9 +582,9 @@ async def on_message(message):
         chat_serverID = message.guild.id
         if chat_serverID in s_hang_false_ids or 'nigger' in message.content.lower():
             pass
-        elif message.content.upper().startswith('<@425696108455657472>'):
+        elif message.content.upper().startswith(self_id_tag):
             pass
-        elif message.author.id == 425696108455657472:
+        elif message.author.id == self_id:
             pass
         elif message.content.upper().startswith('S_ASK'):
             pass
@@ -595,9 +599,9 @@ async def on_message(message):
         chat_serverID = message.guild.id
         if chat_serverID in s_hang_false_ids:
             pass
-        elif message.content.upper().startswith('<@425696108455657472>') or message.content.upper().startswith('<@436350586670153730>') or message.content.upper().startswith('<@436351740787294208>'):
+        elif message.content.upper().startswith(self_id_tag) or message.content.upper().startswith('<@436350586670153730>') or message.content.upper().startswith('<@436351740787294208>'):
             pass
-        elif message.author.id == 425696108455657472 or message.author.id == 436350586670153730 or message.author.id == 436351740787294208:
+        elif message.author.id == self_id or message.author.id == 436350586670153730 or message.author.id == 436351740787294208:
             pass
         elif message.content.upper().startswith('S_ASK'):
             pass
@@ -614,9 +618,9 @@ async def on_message(message):
         chat_serverID = message.guild.id
         if chat_serverID in s_hang_false_ids:
             pass
-        elif message.content.upper().startswith('<@425696108455657472>') or message.content.upper().startswith('<@436350586670153730>') or message.content.upper().startswith('<@436351740787294208>'):
+        elif message.content.upper().startswith(self_id_tag) or message.content.upper().startswith('<@436350586670153730>') or message.content.upper().startswith('<@436351740787294208>'):
             pass
-        elif message.author.id == 425696108455657472 or message.author.id == 436350586670153730 or message.author.id == 436351740787294208:
+        elif message.author.id == self_id or message.author.id == 436350586670153730 or message.author.id == 436351740787294208:
             pass
         elif message.content.upper().startswith('S_ASK'):
             pass
@@ -633,9 +637,9 @@ async def on_message(message):
         chat_serverID = message.guild.id
         if chat_serverID in s_hang_false_ids:
             pass
-        elif message.content.upper().startswith('<@425696108455657472>') or message.content.upper().startswith('<@436350586670153730>') or message.content.upper().startswith('<@436351740787294208>'):
+        elif message.content.upper().startswith(self_id_tag) or message.content.upper().startswith('<@436350586670153730>') or message.content.upper().startswith('<@436351740787294208>'):
             pass
-        elif message.author.id == 425696108455657472 or message.author.id == 436350586670153730 or message.author.id == 436351740787294208:
+        elif message.author.id == self_id or message.author.id == 436350586670153730 or message.author.id == 436351740787294208:
             pass
         elif message.content.upper().startswith('S_ASK'):
             pass
@@ -652,7 +656,7 @@ async def on_message(message):
         chat_serverID = message.guild.id
         if chat_serverID in s_hang_false_ids:
             pass
-        elif message.author.id == 425696108455657472:
+        elif message.author.id == self_id:
             pass
         else:
             await asyncio.sleep(1)
