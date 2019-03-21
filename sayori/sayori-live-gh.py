@@ -72,7 +72,7 @@ commands_cooldown = []
 feed_cooldown = []
 headpat_cooldown = []
 help_cooldown = []
-hug_cooldown = []
+hug_cooldown = {}
 invite_cooldown = []
 joke_cooldown = {}
 lifeline_cooldown = []
@@ -272,24 +272,34 @@ async def on_message(message):
             else:
                 member = message.content.split(" ")[1]
                 if member == "Sayori" or member == "yourself" or self_id_tag in message.content.lower():
-                    hug_cooldown.insert(0, Author)
+                    hug_cooldown[Author] = CurTime() + 5.0
+                    print("added %s to hug_cooldown" % Author)
+#                    hug_cooldown.insert(0, Author)
                     await asyncio.sleep(1)
                     await channel.trigger_typing()
                     await asyncio.sleep(1)
                     await channel.send(random.choice(hugself_reactions))
                     await asyncio.sleep(5)
-                    hug_cooldown.remove(Author)
+#                    hug_cooldown.remove(Author)
+                    if Author in hug_cooldown:
+                        del hug_cooldown[Author]
+                        print("removed %s from hug_cooldown" % Author)
                     return
                 elif member == "hang" or member == "hanged" or member == "hanging" or member == "hung" or member == "nigger":
                     pass
                 else:
-                    hug_cooldown.insert(0, Author)
+                    hug_cooldown[Author] = CurTime() + 5.0
+                    print("added %s to hug_cooldown" % Author)
+                    #hug_cooldown.insert(0, Author)
                     await asyncio.sleep(1)
                     await channel.trigger_typing()
                     await asyncio.sleep(1)
                     await channel.send(random.choice(mentioned_hugs) % (member))
                     await asyncio.sleep(5)
-                    hug_cooldown.remove(Author)
+                    if Author in hug_cooldown:
+                        del hug_cooldown[Author]
+                        print("removed %s from hug_cooldown" % Author)
+                    #hug_cooldown.remove(Author)
                     return
 
     if message.content.upper().startswith('S_HEADPAT'):
