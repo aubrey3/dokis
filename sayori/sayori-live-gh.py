@@ -232,7 +232,7 @@ async def on_message(message):
             return
         else:
             joke_cooldown[Author] = CurTime + 5.0
-            print("added %s to cooldown" % Author)
+            print("added %s to joke_cooldown" % Author)
             await asyncio.sleep(1)
             await channel.trigger_typing()
             await asyncio.sleep(1)
@@ -241,7 +241,7 @@ async def on_message(message):
             await asyncio.sleep(5)
             if Author in joke_cooldown:
                 del joke_cooldown[Author]
-                print("removed %s from cooldown" % Author)
+                print("removed %s from joke_cooldown" % Author)
             return
 
     if message.content.upper().startswith('S_HUG'):
@@ -250,19 +250,24 @@ async def on_message(message):
             pass
         elif '@here' in message.content.lower():
             pass
-        elif Author in hug_cooldown:
+        elif Author in hug_cooldown and hug_cooldown[Author] > CurTime():
             await channel.send("Give me a few seconds; I'm still getting over how nice that last hug was!")
             return
         else:
             userID = message.author.id
             if len(message.content.split(" ")) == 1:
-                hug_cooldown.insert(0, Author)
+                hug_cooldown[Author] = CurTime() + 5.0
+#                hug_cooldown.insert(0, Author)
+                print("added %s to hug_cooldown" % Author)
                 await asyncio.sleep(1)
                 await channel.trigger_typing()
                 await asyncio.sleep(1)
                 await channel.send(random.choice(normal_hugs) % (userID))
                 await asyncio.sleep(5)
-                hug_cooldown.remove(Author)
+                if Author in hug_cooldown:
+                    del hug_cooldown[Author]
+                    print("removed %s from hug_cooldown" % Author)
+#               hug_cooldown.remove(Author)
                 return
             else:
                 member = message.content.split(" ")[1]
