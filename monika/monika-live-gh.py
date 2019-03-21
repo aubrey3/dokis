@@ -179,7 +179,20 @@ async def on_message(message):
                 await asyncio.sleep(1)
                 await channel.send(random.choice(literature_reactions))
                 return
-        if word.upper() in justmonika_words:
+#        if word.upper() in justmonika_words:
+#            ServerID = message.guild.id
+#            if ServerID in m_toggle_false:
+#                pass
+#            elif message.author.id == 436351740787294208:
+#                pass
+#            else:
+#                await asyncio.sleep(1)
+#                await channel.trigger_typing()
+#                await asyncio.sleep(1)
+#                await channel.send(random.choice(justmonika_reactions))
+#                return
+    for jm_word in justmonika_words:
+        if jm_word in message.content.upper():
             ServerID = message.guild.id
             if ServerID in m_toggle_false:
                 pass
@@ -191,6 +204,7 @@ async def on_message(message):
                 await asyncio.sleep(1)
                 await channel.send(random.choice(justmonika_reactions))
                 return
+
     if ('@everyone' or '@here') in message.content.lower() and message.content.upper().startswith("M_"):
         await message.delete()
         await channel.send("I'm sorry, but I don't want to go announcing things to people who are minding their own business. ~~Besides, I'm not a fan of angry mobs.~~")
