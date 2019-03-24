@@ -227,7 +227,7 @@ async def on_message(message):
     if message.content.upper().startswith('S_JOKE'):
         Author = message.author.id
         CurTime = time.time()
-        if Author in joke_cooldown and joke_cooldown[Author] > CurTime():
+        if Author in joke_cooldown and joke_cooldown[Author] > CurTime:
             await channel.send("Hold on! I need time to think of another joke for you...")
             return
         else:
@@ -246,17 +246,18 @@ async def on_message(message):
 
     if message.content.upper().startswith('S_HUG'):
         Author = message.author.id
+        CurTime = time.time()
         if '@everyone' in message.content.lower():
             pass
         elif '@here' in message.content.lower():
             pass
-        elif Author in hug_cooldown and hug_cooldown[Author] > CurTime():
+        elif Author in hug_cooldown and hug_cooldown[Author] > CurTime:
             await channel.send("Give me a few seconds; I'm still getting over how nice that last hug was!")
             return
         else:
             userID = message.author.id
             if len(message.content.split(" ")) == 1:
-                hug_cooldown[Author] = CurTime() + 5.0
+                hug_cooldown[Author] = CurTime + 5.0
 #                hug_cooldown.insert(0, Author)
                 print("added %s to hug_cooldown" % Author)
                 await asyncio.sleep(1)
@@ -272,7 +273,7 @@ async def on_message(message):
             else:
                 member = message.content.split(" ")[1]
                 if member == "Sayori" or member == "yourself" or self_id_tag in message.content.lower():
-                    hug_cooldown[Author] = CurTime() + 5.0
+                    hug_cooldown[Author] = CurTime + 5.0
                     print("added %s to hug_cooldown" % Author)
 #                    hug_cooldown.insert(0, Author)
                     await asyncio.sleep(1)
@@ -288,7 +289,7 @@ async def on_message(message):
                 elif member == "hang" or member == "hanged" or member == "hanging" or member == "hung" or member == "nigger":
                     pass
                 else:
-                    hug_cooldown[Author] = CurTime() + 5.0
+                    hug_cooldown[Author] = CurTime + 5.0
                     print("added %s to hug_cooldown" % Author)
                     #hug_cooldown.insert(0, Author)
                     await asyncio.sleep(1)
