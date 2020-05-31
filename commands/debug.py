@@ -1,6 +1,5 @@
-import discord, json, os, rstr, sys, time
+import discord, json, rstr, sys
 import discord.ext.commands as client
-from datetime import datetime
 
 class Debug(client.Cog):
 
