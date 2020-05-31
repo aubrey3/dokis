@@ -581,3 +581,26 @@ class yuri():
                     "Hahaha. Are you expecting me to do something naughty with a pen? Because I just might if you ask nicely...",
                     "Oh... Oh...! OH!!! YES, YES, YESYESYES!!!"
                 ])
+
+    def welcome(self, tamper=False, member=False):
+        if not tamper:
+            return random.choice([
+                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
+                "I don't know why you're asking me, go ask Sayori.",
+                "Maybe? Monika would know.",
+                "Yuri can help you.",
+                "What about asking Natsuki?",
+                rstr.xeger(r"(Yeh|Nah)\."),
+                "No, just no."
+            ])
+        else:
+            return random.choice([
+                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
+                "I don't know why you're asking me, go ask Sayori.",
+                "Maybe? Monika would know.",
+                "Yuri can help you.",
+                "What about asking Natsuki?",
+                rstr.xeger(r"(Yeh|Nah)\."),
+                "No, just no."
+            ])
+        return

@@ -716,3 +716,26 @@ class monika():
                     "Ahaha, did someone call me? :heart:",
                     "That's sweet of you, but it's not just me anymore!"
                 ])
+
+    def welcome(self, tamper=False, member=False):
+        if not tamper:
+            return random.choice([
+                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
+                "I don't know why you're asking me, go ask Sayori.",
+                "Maybe? Monika would know.",
+                "Yuri can help you.",
+                "What about asking Natsuki?",
+                rstr.xeger(r"(Yeh|Nah)\."),
+                "No, just no."
+            ])
+        else:
+            return random.choice([
+                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
+                "I don't know why you're asking me, go ask Sayori.",
+                "Maybe? Monika would know.",
+                "Yuri can help you.",
+                "What about asking Natsuki?",
+                rstr.xeger(r"(Yeh|Nah)\."),
+                "No, just no."
+            ])
+        return
