@@ -687,24 +687,8 @@ class natsuki():
                 ])
 
     def welcome(self, tamper=False, member=False):
-        if not tamper:
-            return random.choice([
-                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
-                "I don't know why you're asking me, go ask Sayori.",
-                "Maybe? Monika would know.",
-                "Yuri can help you.",
-                "What about asking Natsuki?",
-                rstr.xeger(r"(Yeh|Nah)\."),
-                "No, just no."
-            ])
-        else:
-            return random.choice([
-                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
-                "I don't know why you're asking me, go ask Sayori.",
-                "Maybe? Monika would know.",
-                "Yuri can help you.",
-                "What about asking Natsuki?",
-                rstr.xeger(r"(Yeh|Nah)\."),
-                "No, just no."
-            ])
+        if not tamper and member:
+            return rstr.xeger(r"Seriously\?(You brought )?" + member + r"\? (Way to kill the atmosphere|I can't believe I thought this was a gonna be a small club|I didn't sign up for this)\.")
+        elif member:
+            return f"{member} Dammit why did the likes of YOU join the club?"
         return

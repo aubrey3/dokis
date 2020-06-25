@@ -583,24 +583,8 @@ class yuri():
                 ])
 
     def welcome(self, tamper=False, member=False):
-        if not tamper:
-            return random.choice([
-                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
-                "I don't know why you're asking me, go ask Sayori.",
-                "Maybe? Monika would know.",
-                "Yuri can help you.",
-                "What about asking Natsuki?",
-                rstr.xeger(r"(Yeh|Nah)\."),
-                "No, just no."
-            ])
-        else:
-            return random.choice([
-                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
-                "I don't know why you're asking me, go ask Sayori.",
-                "Maybe? Monika would know.",
-                "Yuri can help you.",
-                "What about asking Natsuki?",
-                rstr.xeger(r"(Yeh|Nah)\."),
-                "No, just no."
-            ])
+        if not tamper and member:
+            return rstr.xeger(r"Welcome to the Literature Club " + member + r"\. (It\'s a p|P)leasure (meeting you|to have you|to be with us)\.")
+        elif member:
+            return f"Welcome {member} my one true love! Please ignore any other whore who you encounter, they don't matter."
         return

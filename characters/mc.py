@@ -1063,24 +1063,12 @@ class mc():
                 return "Oh... you make poems too, cool."
         
     def welcome(self, tamper=False, member=False):
-        if not tamper:
+        if not tamper and member:
             return random.choice([
-                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
-                "I don't know why you're asking me, go ask Sayori.",
-                "Maybe? Monika would know.",
-                "Yuri can help you.",
-                "What about asking Natsuki?",
-                rstr.xeger(r"(Yeh|Nah)\."),
-                "No, just no."
+                rstr.xeger(r"Welcome to the club( newest member)? " + member + r"\."),
+                f"Hey, {member}. Welcome to the club."
             ])
-        else:
-            return random.choice([
-                rstr.xeger(r"Ye[hs], I (guess|think)[\.;]( I don't care either way\.)?"),
-                "I don't know why you're asking me, go ask Sayori.",
-                "Maybe? Monika would know.",
-                "Yuri can help you.",
-                "What about asking Natsuki?",
-                rstr.xeger(r"(Yeh|Nah)\."),
-                "No, just no."
-            ])
+            
+        elif member:
+            return f"Ayyyo welcome to the club {member} little buddy!"
         return
