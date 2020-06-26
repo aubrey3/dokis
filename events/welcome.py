@@ -11,7 +11,7 @@ class Welcome(client.Cog):
 
     @client.Cog.listener()
     async def on_member_join(self, member):
-        if not member.author.bot or not self.is_support_server(ctx.guild.id):
+        if not member.bot or not self.is_support_server(ctx.guild.id):
             return
         tampered = True if self.bot.globalCursor.execute(f"SELECT * FROM tampered WHERE bot = '{self.bot.name}' AND (type = 'guild' AND id = {member.guild.id if member.guild else 0}) OR (type = 'user' AND id = {member.author.id})").fetchone() is not None else False
         self.bot.globalCursor.execute(f"INSERT INTO 'currentWelcomer' ('bot','id') SELECT '{random.choice([i['name'] for i in characters])}',{config['support server']['id']} WHERE NOT EXISTS(SELECT bot FROM currentWelcomer WHERE id = {member.guild.id}) LIMIT 1")
